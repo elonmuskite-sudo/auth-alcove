@@ -80,6 +80,30 @@ export type Database = {
         }
         Relationships: []
       }
+      payment_settings: {
+        Row: {
+          id: number
+          network: string
+          qr_image_url: string | null
+          updated_at: string
+          wallet_address: string | null
+        }
+        Insert: {
+          id?: number
+          network?: string
+          qr_image_url?: string | null
+          updated_at?: string
+          wallet_address?: string | null
+        }
+        Update: {
+          id?: number
+          network?: string
+          qr_image_url?: string | null
+          updated_at?: string
+          wallet_address?: string | null
+        }
+        Relationships: []
+      }
       storage_files: {
         Row: {
           chat_id: string | null
@@ -127,9 +151,11 @@ export type Database = {
           created_at: string
           currency: string
           id: string
+          payment_method: string
           receipt_url: string | null
           status: string
           tier: string
+          tx_reference: string | null
           updated_at: string
           user_id: string
         }
@@ -140,9 +166,11 @@ export type Database = {
           created_at?: string
           currency?: string
           id?: string
+          payment_method?: string
           receipt_url?: string | null
           status?: string
           tier: string
+          tx_reference?: string | null
           updated_at?: string
           user_id: string
         }
@@ -153,9 +181,11 @@ export type Database = {
           created_at?: string
           currency?: string
           id?: string
+          payment_method?: string
           receipt_url?: string | null
           status?: string
           tier?: string
+          tx_reference?: string | null
           updated_at?: string
           user_id?: string
         }
@@ -205,6 +235,8 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      admin_exists: { Args: never; Returns: boolean }
+      claim_first_admin: { Args: never; Returns: boolean }
       get_verification_badge: { Args: { _user_id: string }; Returns: string }
       has_role: {
         Args: {
@@ -212,6 +244,14 @@ export type Database = {
           _user_id: string
         }
         Returns: boolean
+      }
+      review_usdt_payment: {
+        Args: { _approve: boolean; _purchase_id: string }
+        Returns: undefined
+      }
+      submit_usdt_payment: {
+        Args: { _tier: string; _tx_reference: string }
+        Returns: string
       }
     }
     Enums: {
