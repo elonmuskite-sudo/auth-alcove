@@ -236,3 +236,4 @@ grant execute on function public.lookup_member_by_nexus_id(text) to authenticate
 alter publication supabase_realtime add table public.contacts;
 alter publication supabase_realtime add table public.messages;
 alter publication supabase_realtime add table public.chat_members;
+alter publication supabase_realtime add table public.storage_purchases;
