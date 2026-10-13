@@ -18,3 +18,5 @@
 # Backend credentials
 - [x] Use own Supabase; strip Appwrite; schema SQL + admin bootstrap; build needs only Supabase keys
 - [ ] Fill Vercel env vars, run schema SQL, set NOWPayments/Resend function secrets in Supabase — waiting on user
+- [x] Admin diagnostics page (/admin/diagnostics) and member billing history (Settings → Billing history)
+- [ ] Run schema + push Vercel env via GitHub Action "Set up production" — waiting on user's repo secrets

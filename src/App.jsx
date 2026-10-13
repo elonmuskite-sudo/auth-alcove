@@ -11,6 +11,7 @@ import SettingsPage from "./pages/SettingsPage.jsx";
 import ContactsPanel from "./components/chat/ContactsPanel.jsx";
 import FeedsPage from "./pages/FeedsPage.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
+import AdminDiagnostics from "./pages/AdminDiagnostics.jsx";
 import AuthLanding from "./pages/AuthLanding.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
@@ -56,6 +57,7 @@ function App() {
                 </AdminGuard>
               }
             />
+            <Route path="/admin/diagnostics" element={<AdminGuard><AdminDiagnostics /></AdminGuard>} />
             <Route path="/default-path" element={<Navigate to="/" replace />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
