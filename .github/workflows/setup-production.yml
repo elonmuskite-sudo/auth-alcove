@@ -46,11 +46,11 @@ jobs:
           RESEND_FROM: ${{ secrets.RESEND_FROM }}
         run: |
           test -n "$VERCEL_TOKEN" && test -n "$VERCEL_PROJECT_ID" || { echo "Add VERCEL_TOKEN and VERCEL_PROJECT_ID repo secrets first."; exit 1; }
-          Q=""; test -n "$VERCEL_ORG_ID" && Q="?teamId=$VERCEL_ORG_ID"
+          Q="upsert=true"; test -n "$VERCEL_ORG_ID" && Q="$Q&teamId=$VERCEL_ORG_ID"
           put() { # name value type
             [ -z "$2" ] && { echo "skip $1 (empty)"; return; }
             body=$(jq -n --arg k "$1" --arg v "$2" --arg t "$3" '{key:$k,value:$v,type:$t,target:["production","preview"]}')
-            code=$(curl -s -o /tmp/r.json -w '%{http_code}' -X POST "https://api.vercel.com/v10/projects/$VERCEL_PROJECT_ID/env${Q:+$Q&}${Q:-?}upsert=true" \
+            code=$(curl -s -o /tmp/r.json -w '%{http_code}' -X POST "https://api.vercel.com/v10/projects/$VERCEL_PROJECT_ID/env?$Q" \
               -H "Authorization: Bearer $VERCEL_TOKEN" -H 'Content-Type: application/json' -d "$body")
             [ "$code" -lt 300 ] && echo "set $1" || { echo "failed $1 ($code)"; jq -r '.error.message // .' /tmp/r.json; exit 1; }
           }
