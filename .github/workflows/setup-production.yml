@@ -46,6 +46,9 @@ jobs:
           RESEND_FROM: ${{ secrets.RESEND_FROM }}
         run: |
           test -n "$VERCEL_TOKEN" && test -n "$VERCEL_PROJECT_ID" || { echo "Add VERCEL_TOKEN and VERCEL_PROJECT_ID repo secrets first."; exit 1; }
+          test -n "$SERVICE_ROLE" || { echo "Add SUPABASE_SERVICE_ROLE_KEY to GitHub repo secrets first."; exit 1; }
+          test -n "$RESEND_API_KEY" || { echo "Add RESEND_API_KEY to GitHub repo secrets first."; exit 1; }
+          test -n "$RESEND_FROM" || { echo "Add RESEND_FROM to GitHub repo secrets first."; exit 1; }
           Q="upsert=true"; test -n "$VERCEL_ORG_ID" && Q="$Q&teamId=$VERCEL_ORG_ID"
           put() { # name value type
             [ -z "$2" ] && { echo "skip $1 (empty)"; return; }

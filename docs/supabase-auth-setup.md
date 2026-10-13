@@ -59,6 +59,8 @@ Set these in **Vercel → Project → Settings → Environment Variables** for P
 
 Do not add `SUPABASE_SERVICE_ROLE_KEY`, the Postgres connection string, or `RESEND_API_KEY` to frontend `VITE_` variables. The database connection string stays local to the operator's migration environment and is not required by the Vercel app. Redeploy after environment changes.
 
+To configure Production and Preview from GitHub, add `VERCEL_TOKEN`, `VERCEL_PROJECT_ID`, `VERCEL_ORG_ID` (when using a team), `SUPABASE_SERVICE_ROLE_KEY`, `RESEND_API_KEY`, and `RESEND_FROM` as repository Actions secrets. Then run **Actions → Set up production** and provide the Supabase project URL and anon/publishable key. The workflow sets the corresponding browser and server variables in Vercel; it requires the server-side email secrets rather than silently skipping them.
+
 ## 5. Verify the flow
 
 1. Register with an email address and an 8-character-minimum password; confirm the six-digit code is delivered by Resend.

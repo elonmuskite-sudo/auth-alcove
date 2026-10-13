@@ -41,6 +41,12 @@ const REQUIRED_KEYS = [
   'RESEND_FROM',
 ]
 
+const VERCEL_KEYS = [
+  'VITE_SUPABASE_URL',
+  'VITE_SUPABASE_ANON_KEY',
+  ...REQUIRED_KEYS,
+]
+
 function parseEnvFile(filePath) {
   if (!fs.existsSync(filePath)) return {}
 
@@ -96,7 +102,7 @@ function writeEnvFile(values) {
 
   const runtimeConfigPath = path.join(rootDir, '.vercel-runtime-env.json')
   const runtimeConfig = {}
-  for (const key of REQUIRED_KEYS) {
+  for (const key of VERCEL_KEYS) {
     runtimeConfig[key] = values[key] ?? ''
   }
   fs.writeFileSync(runtimeConfigPath, `${JSON.stringify(runtimeConfig, null, 2)}\n`, 'utf8')
