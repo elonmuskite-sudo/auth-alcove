@@ -52,6 +52,10 @@ const config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        badge: {
+          blue: "hsl(var(--badge-blue))",
+          gold: "hsl(var(--badge-gold))",
+        },
       },
       textColor: {
         'font-primary': 'var(--font-color-primary, #1f2937)',

@@ -10,6 +10,7 @@ import ChatPage from "./pages/ChatPage.jsx";
 import SettingsPage from "./pages/SettingsPage.jsx";
 import ContactsPanel from "./components/chat/ContactsPanel.jsx";
 import FeedsPage from "./pages/FeedsPage.jsx";
+import PaymentStatusPage from "./pages/PaymentStatusPage.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
 import AdminDiagnostics from "./pages/AdminDiagnostics.jsx";
 import AuthLanding from "./pages/AuthLanding.jsx";
@@ -48,6 +49,7 @@ function App() {
               <Route path="settings/:section" element={<SettingsPage />} />
               <Route path="contacts" element={<ContactsPanel />} />
               <Route path="feeds" element={<FeedsPage />} />
+              <Route path="payment/:purchaseId" element={<PaymentStatusPage />} />
             </Route>
             <Route
               path="/admin"

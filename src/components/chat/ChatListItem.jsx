@@ -4,8 +4,17 @@ import { format } from 'date-fns'
 import { Lock } from 'lucide-react'
 import ChatButton from './ChatButton'
 import { decodeContent } from '../../lib/chatProtocol'
+import VerificationBadge from './VerificationBadge'
+import { useAuth } from '../../lib/AuthContext'
+
+export function peerIdOf(chat, myId) {
+  const ids = (chat?.participant_ids || []).map(String).filter((id) => id !== String(myId || ''))
+  return ids.length === 1 ? ids[0] : null
+}
 
 function ChatListItem({ chat, selected, onClick }) {
+  const { user } = useAuth()
+  const peerId = peerIdOf(chat, user?.id)
   const timeLabel = useMemo(() => {
     if (!chat.last_message_time) return null
     try {
@@ -29,6 +38,7 @@ function ChatListItem({ chat, selected, onClick }) {
             <h3 className="text-sm font-semibold text-foreground truncate">
               {chat.title}
             </h3>
+            {peerId && <VerificationBadge userId={peerId} className="w-3.5 h-3.5 flex-shrink-0" />}
             {chat.encrypted && (
               <Lock className="w-3 h-3 text-primary flex-shrink-0" />
             )}
