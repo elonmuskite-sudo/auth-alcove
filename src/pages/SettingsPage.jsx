@@ -8,6 +8,8 @@ import DataStorageSettings from '../components/chat/settings/DataStorageSettings
 import VerificationSettings from '../components/chat/settings/VerificationSettings'
 import BillingHistory from '../components/chat/settings/BillingHistory'
 import Avatar from '../components/chat/Avatar'
+import VerificationBadge from '../components/chat/VerificationBadge'
+import ClaimAdminCard from '../components/ClaimAdminCard'
 import { useAuth } from '../lib/AuthContext'
 import { ChevronRight, ArrowLeft, Receipt, Bell, Database, HardDrive, LogOut, Palette, ShieldCheck, UserCircle } from 'lucide-react'
 import { useNavigate, useLocation } from 'react-router-dom'
@@ -73,6 +75,7 @@ function SettingsMenu() {
   return (
     <SettingsShell>
       <h2 className="text-2xl font-bold text-foreground mb-6">Settings</h2>
+      <ClaimAdminCard />
 
       <button
         onClick={() => navigate('/app/settings/profile')}
@@ -84,7 +87,7 @@ function SettingsMenu() {
             <UserCircle className="w-4 h-4 text-muted-foreground" />
             <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Profile</p>
           </div>
-          <h3 className="font-bold text-foreground text-lg leading-tight truncate">{user?.fullName || 'Anonymous User'}</h3>
+          <h3 className="font-bold text-foreground text-lg leading-tight truncate flex items-center gap-1.5">{user?.fullName || 'Anonymous User'}<VerificationBadge userId={user?.id} className="w-4 h-4 flex-shrink-0" /></h3>
           <p className="text-xs text-muted-foreground mt-1">Nexus ID: {user?.nexusIdDisplay || '10-XXXX-XXXX'}</p>
         </div>
         <ChevronRight className="w-5 h-5 text-muted-foreground flex-shrink-0" />

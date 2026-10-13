@@ -14,6 +14,8 @@ import { isChatServiceAvailable, newId } from '../../lib/persistence'
 import { useAuth } from '../../lib/AuthContext'
 import { Search, X, MessageCircle } from 'lucide-react'
 import ChatButton from './ChatButton'
+import VerificationBadge from './VerificationBadge'
+import { peerIdOf } from './ChatListItem'
 import { resolveMessages, decodeContent, encodeReply } from '../../lib/chatProtocol'
 
 // eslint-disable-next-line react/prop-types
@@ -174,6 +176,7 @@ export default function ChatView({ chat, onBack }) {
           <div className="min-w-0">
             <div className="flex items-center gap-1 min-w-0">
               <h2 className="font-bold text-foreground truncate text-sm sm:text-base">{chat.title}</h2>
+              {peerIdOf(chat, user?.id) && <VerificationBadge userId={peerIdOf(chat, user?.id)} className="w-4 h-4 flex-shrink-0" />}
               {chat.encrypted && (
                 <LockClosedIcon className="w-3.5 h-3.5 text-primary flex-shrink-0" title="End-to-end encrypted" />
               )}

@@ -15,6 +15,8 @@
     --popover-foreground: 220 15% 20%;
 
     --primary: 207 100% 50%; /* #0084ff */
+    --badge-blue: 207 100% 50%;
+    --badge-gold: 43 96% 52%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 220 14% 96%;
@@ -54,6 +56,8 @@
     --popover-foreground: 210 40% 98%;
 
     --primary: 208 65% 45%; /* #2b5278 */
+    --badge-blue: 207 100% 58%;
+    --badge-gold: 45 95% 55%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 28% 16%; /* #17212b */
