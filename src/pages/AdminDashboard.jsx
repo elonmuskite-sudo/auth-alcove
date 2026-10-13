@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useAuth } from '../lib/AuthContext'
 import { supabase } from '../lib/supabase'
 import Header from '../components/Header'
@@ -58,6 +59,7 @@ export default function AdminDashboard() {
           <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
             Monitor active members, review recent messages.
           </p>
+          <Link to="/admin/diagnostics" className="mt-4 inline-flex rounded-xl border border-border px-3 py-2 text-sm font-medium text-primary hover:bg-muted">Configuration diagnostics</Link>
           <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">Signed in as {user?.fullName || user?.nexusId}</p>
         </div>
 

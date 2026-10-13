@@ -6,9 +6,10 @@ import PrivacySettings from '../components/chat/settings/PrivacySettings'
 import ProfileEdit from '../components/chat/settings/ProfileEdit'
 import DataStorageSettings from '../components/chat/settings/DataStorageSettings'
 import VerificationSettings from '../components/chat/settings/VerificationSettings'
+import BillingHistory from '../components/chat/settings/BillingHistory'
 import Avatar from '../components/chat/Avatar'
 import { useAuth } from '../lib/AuthContext'
-import { ChevronRight, ArrowLeft, Bell, Database, HardDrive, LogOut, Palette, ShieldCheck, UserCircle } from 'lucide-react'
+import { ChevronRight, ArrowLeft, Receipt, Bell, Database, HardDrive, LogOut, Palette, ShieldCheck, UserCircle } from 'lucide-react'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 function SettingsMenu() {
@@ -44,6 +45,12 @@ function SettingsMenu() {
       label: 'Storage',
       description: 'Usage, file breakdown, free up space',
       icon: <HardDrive className="w-5 h-5" />,
+    },
+    {
+      id: 'billing',
+      label: 'Billing history',
+      description: 'Your payments and storage upgrade status',
+      icon: <Receipt className="w-5 h-5" />,
     },
     {
       id: 'verification',
@@ -208,6 +215,16 @@ export default function SettingsPage() {
       <div className="flex-1 overflow-y-auto bg-card">
         <SettingsSubPage title="Storage">
           <DataStorageSettings />
+        </SettingsSubPage>
+      </div>
+    )
+  }
+
+  if (subPath === 'billing') {
+    return (
+      <div className="flex-1 overflow-y-auto bg-card">
+        <SettingsSubPage title="Billing history">
+          <BillingHistory />
         </SettingsSubPage>
       </div>
     )
